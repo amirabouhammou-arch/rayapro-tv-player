@@ -290,151 +290,132 @@
         </div>
     </div>
 <script>
-/* =======================
-   حماية الصفحة
-======================= */
-document.addEventListener('contextmenu', e => e.preventDefault());
-document.addEventListener('selectstart', e => e.preventDefault());
-document.addEventListener('dragstart', e => e.preventDefault());
+    // حماية من النسخ وسحب الصور
+    document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
+    document.addEventListener('selectstart', function(e) { e.preventDefault(); });
+    document.addEventListener('dragstart', function(e) { e.preventDefault(); });
 
-/* =======================
-   إعدادات التطبيق
-======================= */
-const appConfig = {
-    categories: [
-        { id: 1, name: "BEIN SPORTS 4K", logo: "https://upload.wikimedia.org/wikipedia/commons/c/cc/BeIN_SPORTS_MENA_logo_2017.jpg" },
-        { id: 2, name: "BEIN SPORTS HD", logo: "https://upload.wikimedia.org/wikipedia/commons/c/cc/BeIN_SPORTS_MENA_logo_2017.jpg" },
-        { id: 3, name: "BEIN SPORTS SD", logo: "https://upload.wikimedia.org/wikipedia/commons/c/cc/BeIN_SPORTS_MENA_logo_2017.jpg" },
-        { id: 4, name: "ARABIC SPORTS", logo: "image/Arabicsports.png" },
-        { id: 5, name: "SHAHID VIP", logo: "logo/shahidvip.png" },
-        { id: 6, name: "ISLAMIC CHANNELS", logo: "https://png.pngtree.com/png-vector/20241019/ourmid/pngtree-mosque-icon-vector-clipart-islamic-logo-png-image_14123330.png" },
-        { id: 7, name: "NEWS CHANNELS", logo: "image/news.png" },
-        { id: 8, name: "SPAIN CHANNELS", logo: "image/spain.png" },
-        { id: 9, name: "FRANCE CHANNELS", logo: "image/france.png" },
-        { id: 10, name: "MOROCCO TV", logo: "image/maroc.png" },
-        { id: 11, name: "EGYPT TV", logo: "image/egypt.png" },
-        { id: 12, name: "SAUDI ARABIA TV", logo: "image/soudi.jpg" },
-        { id: 13, name: "ALGÉRIE CHANNELS", logo: "image/algerie.png" },
-        { id: 14, name: "ARABIC CHANNELS", logo: "image/arabic.jpg" },
-        { id: 15, name: "THAMANYA CHANNELS", logo: "image/Thmanyah.svg" }
-    ]
-};
+    const appConfig = {
+        categories: [
+            { id: 1, name: "BEIN SPORTS 4K", logo: "https://upload.wikimedia.org/wikipedia/commons/c/cc/BeIN_SPORTS_MENA_logo_2017.jpg" },
+            { id: 2, name: "BEIN SPORTS HD", logo: "https://upload.wikimedia.org/wikipedia/commons/c/cc/BeIN_SPORTS_MENA_logo_2017.jpg" },
+            { id: 3, name: "BEIN SPORTS SD", logo: "https://upload.wikimedia.org/wikipedia/commons/c/cc/BeIN_SPORTS_MENA_logo_2017.jpg" },
+            { id: 4, name: "ARABIC SPORTS ", logo: "image/Arabicsports.png" },
+            { id: 5, name: "SHAHID VIP", logo: "logo/shahidvip.png" },
+            { id: 6, name: "ISLAMIC CHANNELS", logo: "https://png.pngtree.com/png-vector/20241019/ourmid/pngtree-mosque-icon-vector-clipart-islamic-logo-png-image_14123330.png" },
+            { id: 7, name: "NEWS CHANNELS", logo: "image/news.png" },
+            { id: 8, name: "SPAIN CHANNELS", logo: "image/spain.png" },
+            { id: 9, name: "FRANCE CHANNELS", logo: "image/france.png" },
+            { id: 10, name: "MOROCCO TV", logo: "image/maroc.png" },
+            { id: 11, name: "EGYPT TV", logo: "image/egypt.png" },
+            { id: 12, name: "SAUDI ARABIA TV", logo: "image/soudi.jpg" },
+            { id: 13, name: "ALGÉRIE CHANNELS", logo: "image/algerie.png" },
+            { id: 14, name: "ARABIC CHANNELS", logo: "image/arabic.jpg" },
+            { id: 15, name: "THAMANYA CHANNELS", logo: "image/Thmanyah.svg" }
+        ]
+    };
 
-let currentScreen = 'home';
-let lastCategoryName = '';
-let currentChannelsData = [];
+    let currentScreen = 'home';
+    let lastCategoryName = '';
+    let currentChannelsData = []; 
 
-/* =======================
-   التنقل
-======================= */
-function switchPage(id, title) {
-    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-    document.getElementById(id).classList.add('active');
-    history.pushState({ screenId: id }, title);
-}
+    // --- وظائف التنقل ---
+    function switchPage(id, title, isBackAction = false) {
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+        if (!isBackAction) {
+            history.pushState({ screenId: id, screenName: title }, title);
+        }
+    }
 
-window.onpopstate = e => {
-    if (!e.state) return;
-    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-    document.getElementById(e.state.screenId).classList.add('active');
-};
+    window.onpopstate = function(event) {
+        if (event.state) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById(event.state.screenId).classList.add('active');
+        }
+    };
 
-/* =======================
-   الصفحة الرئيسية
-======================= */
-function renderHome() {
-    const container = document.getElementById('categoryContainer');
-    container.innerHTML = '';
-    appConfig.categories.forEach(cat => {
-        const div = document.createElement('div');
-        div.className = 'list-item';
-        div.innerHTML = `
-            <div class="cat-text">${cat.name}</div>
-            <div class="cat-logo-frame">
-                <img src="${cat.logo}">
-            </div>`;
-        div.onclick = () => openChannelList(cat.id, cat.name);
-        container.appendChild(div);
-    });
-}
-
-/* =======================
-   القنوات
-======================= */
-async function openChannelList(id, name) {
-    currentScreen = 'channels';
-    lastCategoryName = name;
-    switchPage('view-channels', name);
-
-    const grid = document.getElementById('channelGrid');
-    grid.innerHTML = 'Loading...';
-
-    try {
-        const res = await fetch(`data/${id}.json`);
-        const channels = await res.json();
-        currentChannelsData = channels;
-        grid.innerHTML = '';
-
-        channels.forEach(ch => {
-            const card = document.createElement('div');
-            card.className = 'channel-card';
-            card.innerHTML = `
-                <img src="${ch.logo}">
-                <p>${ch.name}</p>`;
-            card.onclick = () => openExternalPlayer(ch);
-            grid.appendChild(card);
+    function renderHome() {
+        const container = document.getElementById('categoryContainer');
+        if(!container) return;
+        container.innerHTML = '';
+        appConfig.categories.forEach((cat) => {
+            const div = document.createElement('div');
+            div.className = 'list-item';
+            div.innerHTML = `
+                <div class="cat-text">${cat.name}</div>
+                <div class="cat-logo-frame">
+                    <img src="${cat.logo}" class="cat-logo-img">
+                </div>
+            `;
+            div.onclick = () => openChannelList(cat.id, cat.name);
+            container.appendChild(div);
         });
-    } catch {
-        grid.innerHTML = 'خطأ في تحميل القنوات';
-    }
-}
-
-/* =======================
-   فتح المشغل الخارجي (Play Store)
-======================= */
-function openExternalPlayer(channel) {
-    if (!channel.link) {
-        alert("رابط القناة غير متوفر");
-        return;
     }
 
-    const streamUrl = channel.link;
-    const title = encodeURIComponent(channel.name);
+    async function openChannelList(id, name) {
+        currentScreen = 'channels';
+        lastCategoryName = name;
+        switchPage('view-channels', name);
 
-    // غيّر المشغل هنا إذا أردت
-    const playerPackage = "com.sham.splayer"; // MX Player
-    // const playerPackage = "org.videolan.vlc";        // VLC
-    // const playerPackage = "com.sham.splayer";        // SPlayer
+        const grid = document.getElementById('channelGrid');
+        grid.innerHTML = '<p style="grid-column:1/-1;text-align:center;color:white;">Loading...</p>';
 
-    const playStoreUrl = `https://play.google.com/store/apps/details?id=${playerPackage}`;
+        try {
+            const response = await fetch(`data/${id}.json`);
+            const channels = await response.json();
+            currentChannelsData = channels; 
+            grid.innerHTML = ''; 
 
-    const intentUrl =
-        `intent:${streamUrl}` +
-        `#Intent;scheme=http;` +
-        `type=video/*;` +
-        `package=${playerPackage};` +
-        `S.title=${title};` +
-        `S.browser_fallback_url=${encodeURIComponent(playStoreUrl)};end`;
+            channels.forEach((channel) => {
+                const card = document.createElement('div');
+                card.className = 'channel-card';
+                card.innerHTML = `
+                    <img src="${channel.logo}" onerror="this.src='https://via.placeholder.com/100'">
+                    <p>${channel.name}</p>
+                `;
+                card.onclick = () => openPlayerPage(channel.num);
+                grid.appendChild(card);
+            });
+        } catch {
+            grid.innerHTML = '<p style="color:red;text-align:center;">خطأ في تحميل القنوات</p>';
+        }
+    }
 
-    // محاولة فتح التطبيق
-    window.location.href = intentUrl;
+    // =========================
+    // التعديل الوحيد هنا ✅
+    // =========================
+    function openPlayerPage(channelNum) {
+        const channel = currentChannelsData.find(c => c.num == channelNum);
+        if (!channel || !channel.link) {
+            alert("رابط القناة غير متوفر");
+            return;
+        }
 
-    // حل احتياطي
-    setTimeout(() => {
-        window.open(playStoreUrl, '_blank');
-    }, 1500);
-}
+        const streamUrl = channel.link;
+        const title = encodeURIComponent(channel.name);
 
-/* =======================
-   تشغيل
-======================= */
-window.onload = () => {
-    history.replaceState({ screenId: 'view-home' }, 'RAYAPRO TV');
-    renderHome();
-};
+        // اختر المشغل
+        const playerPackage = "com.mxtech.videoplayer.ad"; // MX Player
+        // const playerPackage = "org.videolan.vlc";        // VLC
+        // const playerPackage = "com.sham.splayer";        // SPlayer
+
+        const playStoreUrl = `https://play.google.com/store/apps/details?id=${playerPackage}`;
+
+        const intentUrl =
+            `intent:${streamUrl}` +
+            `#Intent;type=video/*;package=${playerPackage};` +
+            `S.title=${title};` +
+            `S.browser_fallback_url=${encodeURIComponent(playStoreUrl)};end`;
+
+        window.location.href = intentUrl;
+    }
+
+    window.onload = () => {
+        history.replaceState({ screenId: 'view-home' }, 'RAYAPRO TV');
+        renderHome();
+    };
 </script>
-
-
 
 </body>
 </html>
