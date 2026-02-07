@@ -289,18 +289,18 @@
             <div class="grid-channels" id="channelGrid"></div>
         </div>
     </div>
-<script>
+     <script>
     // حماية من النسخ وسحب الصور
-    document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
-    document.addEventListener('selectstart', function(e) { e.preventDefault(); });
-    document.addEventListener('dragstart', function(e) { e.preventDefault(); });
+    document.addEventListener('contextmenu', e => e.preventDefault());
+    document.addEventListener('selectstart', e => e.preventDefault());
+    document.addEventListener('dragstart', e => e.preventDefault());
 
     const appConfig = {
         categories: [
             { id: 1, name: "BEIN SPORTS 4K", logo: "https://upload.wikimedia.org/wikipedia/commons/c/cc/BeIN_SPORTS_MENA_logo_2017.jpg" },
             { id: 2, name: "BEIN SPORTS HD", logo: "https://upload.wikimedia.org/wikipedia/commons/c/cc/BeIN_SPORTS_MENA_logo_2017.jpg" },
             { id: 3, name: "BEIN SPORTS SD", logo: "https://upload.wikimedia.org/wikipedia/commons/c/cc/BeIN_SPORTS_MENA_logo_2017.jpg" },
-            { id: 4, name: "ARABIC SPORTS ", logo: "image/Arabicsports.png" },
+            { id: 4, name: "ARABIC SPORTS", logo: "image/Arabicsports.png" },
             { id: 5, name: "SHAHID VIP", logo: "logo/shahidvip.png" },
             { id: 6, name: "ISLAMIC CHANNELS", logo: "https://png.pngtree.com/png-vector/20241019/ourmid/pngtree-mosque-icon-vector-clipart-islamic-logo-png-image_14123330.png" },
             { id: 7, name: "NEWS CHANNELS", logo: "image/news.png" },
@@ -311,68 +311,37 @@
             { id: 12, name: "SAUDI ARABIA TV", logo: "image/soudi.jpg" },
             { id: 13, name: "ALGÉRIE CHANNELS", logo: "image/algerie.png" },
             { id: 14, name: "ARABIC CHANNELS", logo: "image/arabic.jpg" },
-              { id: 15, name: "THAMANYA CHANNELS", logo: "image/Thmanyah.svg" }
+            { id: 15, name: "THAMANYA CHANNELS", logo: "image/Thmanyah.svg" }
         ]
     };
 
     let currentScreen = 'home';
     let lastCategoryName = '';
-    let currentChannelsData = []; 
+    let currentChannelsData = [];
 
-    // --- وظائف التنقل ---
-    function switchPage(id, title, isBackAction = false) {
+    function switchPage(id, title) {
         document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
         document.getElementById(id).classList.add('active');
-        if (!isBackAction) {
-            history.pushState({ screenId: id, screenName: title }, title);
-        }
+        history.pushState({ screenId: id }, title);
     }
 
-    function handleBackAction() {
-        if (currentScreen === 'home') {
-            toggleSidebar();
-        } else {
-            window.history.back();
-        }
-    }
-
-    window.onpopstate = function(event) {
-        if (event.state) {
-            const state = event.state;
-            if (state.screenId === 'view-home') {
-                currentScreen = 'home';
-                updateHeaderUI('RAYAPRO TV', false);
-            } else if (state.screenId === 'view-channels') {
-                currentScreen = 'channels';
-                updateHeaderUI(lastCategoryName, true);
-            }
-            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-            document.getElementById(state.screenId).classList.add('active');
-        }
+    window.onpopstate = e => {
+        if (!e.state) return;
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        document.getElementById(e.state.screenId).classList.add('active');
     };
-
-    function toggleSidebar() {
-        const sidebar = document.getElementById('appSidebar');
-        const overlay = document.getElementById('mainOverlay');
-        if (sidebar.classList.contains('active')) {
-            sidebar.classList.remove('active');
-            overlay.style.display = 'none';
-        } else {
-            sidebar.classList.add('active');
-            overlay.style.display = 'block';
-        }
-    }
 
     function renderHome() {
         const container = document.getElementById('categoryContainer');
-        if(!container) return;
         container.innerHTML = '';
-        appConfig.categories.forEach((cat) => {
+        appConfig.categories.forEach(cat => {
             const div = document.createElement('div');
             div.className = 'list-item';
             div.innerHTML = `
                 <div class="cat-text">${cat.name}</div>
-                <div class="cat-logo-frame"><img src="${cat.logo}" class="cat-logo-img"></div>
+                <div class="cat-logo-frame">
+                    <img src="${cat.logo}" class="cat-logo-img">
+                </div>
             `;
             div.onclick = () => openChannelList(cat.id, cat.name);
             container.appendChild(div);
@@ -382,72 +351,55 @@
     async function openChannelList(id, name) {
         currentScreen = 'channels';
         lastCategoryName = name;
-        updateHeaderUI(name, true);
         switchPage('view-channels', name);
 
         const grid = document.getElementById('channelGrid');
-        grid.innerHTML = '<p style="grid-column: 1/-1; text-align:center; color: white; padding:20px;">Loading Channels...</p>';
+        grid.innerHTML = 'Loading...';
 
         try {
-            const response = await fetch(`data/${id}.json`);
-            if (!response.ok) throw new Error('File not found');
-            const channels = await response.json();
-            currentChannelsData = channels; 
-            grid.innerHTML = ''; 
-            channels.forEach((channel) => {
+            const res = await fetch(`data/${id}.json`);
+            const channels = await res.json();
+            currentChannelsData = channels;
+            grid.innerHTML = '';
+
+            channels.forEach(ch => {
                 const card = document.createElement('div');
                 card.className = 'channel-card';
                 card.innerHTML = `
-                    <img src="${channel.logo}" onerror="this.src='https://via.placeholder.com/100?text=TV'">
-                    <p>${channel.name}</p>
+                    <img src="${ch.logo}">
+                    <p>${ch.name}</p>
                 `;
-                card.onclick = () => openPlayerPage(channel.num);
+                card.onclick = () => openPlayerPage(ch.num);
                 grid.appendChild(card);
             });
-        } catch (error) {
-            grid.innerHTML = `<p style="grid-column:1/-1; text-align:center; color:red; padding:20px;">Error loading channels</p>`;
+        } catch {
+            grid.innerHTML = 'خطأ في تحميل القنوات';
         }
     }
 
-    // --- الوظيفة النهائية لفتح المشغل المثبت يدوياً ---
+    /* ======================================
+       ✅ التعديل الوحيد هنا
+       فتح مشغل داخلي داخل Android Studio
+    ====================================== */
     function openPlayerPage(channelNum) {
         const channel = currentChannelsData.find(c => c.num == channelNum);
+        if (!channel || !channel.link) return;
 
-        if (channel && channel.link) {
-            const streamUrl = channel.link;
-            const packageName = "com.sham.splayer";
-            const channelName = channel.name;
+        const streamUrl = encodeURIComponent(channel.link);
+        const title = encodeURIComponent(channel.name);
 
-            // تم تعديل الرابط هنا ليكون رابطاً مباشراً للتطبيق (Android Intent)
-            // واستخدام المحرك الافتراضي لفتح الفيديو مباشرة
-            const intentUrl = `intent:${streamUrl}#Intent;package=${packageName};type=video/*;S.title=${encodeURIComponent(channelName)};S.browser_fallback_url=${encodeURIComponent(streamUrl)};end`;
+        // Custom Scheme للتطبيق
+        const appPlayerUrl = `rayapro://play?url=${streamUrl}&title=${title}`;
 
-            try {
-                // محاولة فتح التطبيق
-                window.location.href = intentUrl;
-            } catch (e) {
-                // إذا فشل تماماً، افتح الرابط في المتصفح كحل أخير
-                window.open(streamUrl, '_blank');
-            }
-        } else {
-            alert("رابط القناة غير متوفر");
-        }
-    }
-
-    function updateHeaderUI(title, showBack) {
-        document.getElementById('topHeaderTitle').innerText = title;
-        const btn = document.getElementById('navActionBtn');
-        if(btn) {
-            btn.innerHTML = showBack ? '<i class="fas fa-arrow-left"></i>' : '<i class="fa-solid fa-bars"></i>';
-        }
+        // يلتقطه WebView داخل Android Studio
+        window.location.href = appPlayerUrl;
     }
 
     window.onload = () => {
-        history.replaceState({ screenId: 'view-home', screenName: 'RAYAPRO TV' }, 'RAYAPRO TV');
+        history.replaceState({ screenId: 'view-home' }, 'RAYAPRO TV');
         renderHome();
     };
 </script>
 
-
-</body>
-</html>
+ </body>
+  </html>
