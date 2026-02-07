@@ -1,0 +1,44 @@
+[
+  {
+    "name": "La 1 HD",
+    "num": "1",
+    "logo": "spain/s1.png",
+    "link": "https://ztnr.rtve.es/ztnr/5190066.m3u8"
+  },
+  {
+    "name": "La 2 HD",
+    "num": "2",
+    "logo": "spain/s2.png",
+    "link": "https://ztnr.rtve.es/ztnr/5190066.m3u8"
+  },
+  {
+    "name": "Antena 3",
+    "num": "3",
+    "logo": "spain/s3.png",
+    "link": ""
+  },
+  {
+    "name": "Cuatro",
+    "num": "4",
+    "logo": "spain/s4.png",
+    "link": ""
+  },
+  {
+    "name": "Telecinco",
+    "num": "5",
+    "logo": "spain/s5.png",
+    "link": ""
+  },
+  {
+    "name": "La Sexta",
+    "num": "6",
+    "logo": "spain/s6.png",
+    "link": ""
+  },
+  {
+    "name": "24Horas",
+    "num": "4",
+    "logo": "spain/TVE-24H.png",
+    "link": ""
+  }
+]

@@ -1,0 +1,80 @@
+[
+  {
+    "name": "MBC 1 HD",
+    "num": "1",
+    "logo": "mbc/mbc1.svg",
+    "link": "mbc/mbc.html"
+  },
+  {
+    "name": "MBC 2 HD",
+    "num": "2",
+    "logo": "mbc/mbc2.svg",
+    "link": "https://shd-gcp-live.edgenextcdn.net/live/bitmovin-mbc-2/playlist.m3u8"
+  },
+  {
+    "name": "MBC 3 HD",
+    "num": "3",
+    "logo": "mbc/mbc3.svg",
+    "link": "https://shd-gcp-live.edgenextcdn.net/live/bitmovin-mbc-3/playlist.m3u8"
+  },
+  {
+    "name": "MBC 4 HD",
+    "num": "4",
+    "logo": "mbc/mbc4.svg",
+    "link": "https://shd-gcp-live.edgenextcdn.net/live/bitmovin-mbc-4/playlist.m3u8"
+  },
+  {
+    "name": "MBC 5 HD",
+    "num": "5",
+    "logo": "mbc/mbc5.svg",
+    "link": "https://shd-gcp-live.edgenextcdn.net/live/bitmovin-mbc-5/ee6b000cee0629411b666ab26cb13e9b/manifest/video/1080p2400kbps/video.m3u8"
+  },
+  {
+    "name": "MBC ACTION HD",
+    "num": "6",
+    "logo": "mbc/mbc_action.svg",
+    "link": "https://shd-gcp-live.edgenextcdn.net/live/bitmovin-mbc-action/playlist.m3u8"
+  },
+  {
+    "name": "MBC MAX HD",
+    "num": "7",
+    "logo": "mbc/mbc_max.svg",
+    "link": "https://shd-gcp-live.edgenextcdn.net/live/bitmovin-mbc-max/playlist.m3u8"
+  },
+  {
+    "name": "MBC BOLLYWOOD HD",
+    "num": "8",
+    "logo": "mbc/mbc_bollywood.svg",
+    "link": "https://shd-gcp-live.edgenextcdn.net/live/bitmovin-mbc-bollywood/playlist.m3u8"
+  },
+  {
+    "name": "MBC DRAMA HD",
+    "num": "9",
+    "logo": "mbc/mbc_drama1.svg",
+    "link": "https://shd-gcp-live.edgenextcdn.net/live/bitmovin-mbc-drama/playlist.m3u8"
+  },
+  {
+    "name": "MBC MASR HD",
+    "num": "10",
+    "logo": "mbc/mbc_egypt.svg",
+    "link": "https://shd-gcp-live.edgenextcdn.net/live/bitmovin-mbc-masr/playlist.m3u8"
+  },
+  {
+    "name": "MBC MASR 2 HD",
+    "num": "11",
+    "logo": "mbc/mbc_egypt2.svg",
+    "link": "https://shd-gcp-live.edgenextcdn.net/live/bitmovin-mbc-masr-2/playlist.m3u8"
+  },
+    {
+    "name": "SHAHID SPORTS 1",
+    "num": "12",
+    "logo": "mbc/shahid.png",
+    "link": "Shahid.m3u8"
+  },
+    {
+    "name": "SHAHID SPORTS 2",
+    "num": "13",
+    "logo": "mbc/shahid.png",
+    "link": "Shahid.m3u8"
+  }
+]

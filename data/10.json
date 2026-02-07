@@ -1,0 +1,18 @@
+[
+  { "name": "Al Aoula HD", "num": "1", "logo": "maroc/1m.png" },
+  { "name": "2M Maroc", "num": "2", "logo": "maroc/2m.png", "link": "http://185.223.214.11/live/play/TlZJdmMzVXlZM1ZqYkhWaVZrdHlLMjFWZG1kSVRHeHhVMFl4UnpCYU0yMUxTSHBhZVZKRmVFZHVjejA9/8192" },
+  { "name": "Arryadia HD", "num": "3", "logo": "maroc/3m.png", "link": "https://example.com/arryadia" },
+  { "name": "Athaqafia HD", "num": "4", "logo": "maroc/4m.png", "link": "https://example.com/athaqafia" },
+  { "name": "Al Maghribia HD", "num": "5", "logo": "maroc/5m.png", "link": "https://example.com/al-maghribia" },
+  { "name": "Assadissa HD", "num": "6", "logo": "maroc/6m.png", "link": "https://example.com/assadissa" },
+  { "name": "Aflam TV HD", "num": "7", "logo": "maroc/aflam.png", "link": "https://example.com/aflam" },
+  { "name": "Tamazight TV", "num": "8", "logo": "maroc/8m.png", "link": "https://example.com/tamazight" },
+  { "name": "Laâyoune TV HD", "num": "9", "logo": "maroc/Laayoune.png", "link": "https://example.com/laayoune" },
+  { "name": "Medi 1 TV HD", "num": "10", "logo": "maroc/medi1.png", "link": "https://example.com/medi1" },
+  { "name": "M24 Maroc HD", "num": "11", "logo": "maroc/m24.png", "link": "https://example.com/m24" },
+  { "name": "Télé Maroc HD", "num": "12", "logo": "maroc/telemaroc.png", "link": "https://example.com/telemaroc" },
+  { "name": "Chada TV HD", "num": "13", "logo": "maroc/chada.png", "link": "https://example.com/chada" },
+  { "name": "MBC 5 HD", "num": "14", "logo": "maroc/mbc5.png", "link": "https://shd-gcp-live.edgenextcdn.net/live/bitmovin-mbc-5/ee6b000cee0629411b666ab26cb13e9b/manifest/video/1080p2400kbps/video.m3u8" },
+  { "name": "Arryadia TNT HD", "num": "15", "logo": "maroc/3m.png", "link": "https://example.com/arryadia-tnt" },
+  { "name": "Arryadia SD", "num": "16", "logo": "maroc/3m.png", "link": "https://example.com/arryadia-sd" }
+]

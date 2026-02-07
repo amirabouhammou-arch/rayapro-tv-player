@@ -1,0 +1,16 @@
+[
+    { "name": "beIN SPORTS 1", "num": "1", "logo": "bein/bein1.png", "link": "https://example.com/bein1" },
+                { "name": "beIN SPORTS 2", "num": "2", "logo": "bein/bein2.png", "link": "https://example.com/bein2" },
+                { "name": "beIN SPORTS 3", "num": "3", "logo": "bein/bein3.png", "link": "https://example.com/bein3" },
+                { "name": "beIN SPORTS 4", "num": "4", "logo": "bein/bein4.png", "link": "https://example.com/bein4" },
+                { "name": "beIN SPORTS 5", "num": "5", "logo": "bein/bein5.png", "link": "https://example.com/bein5" },
+                { "name": "beIN SPORTS 6", "num": "6", "logo": "bein/bein6.png", "link": "https://example.com/bein6" },
+                { "name": "beIN SPORTS 7", "num": "7", "logo": "bein/bein7.png", "link": "https://example.com/bein7" },
+                { "name": "beIN SPORTS 8", "num": "8", "logo": "bein/bein8.png", "link": "https://example.com/bein8" },
+                { "name": "beIN SPORTS 9", "num": "9", "logo": "bein/bein9.png", "link": "https://example.com/bein9" },
+                { "name": "beIN SPORTS", "num": "10", "logo": "bein/bein.png", "link": "https://example.com/bein10" },
+                { "name": "beIN SPORTS NEWS", "num": "11", "logo": "bein/bein_news.png", "link": "https://example.com/bein_news" },
+                { "name": "beIN 4K", "num": "12", "logo": "bein/bein4k.png", "link": "https://example.com/bein4k" }
+            ]
+        
+            

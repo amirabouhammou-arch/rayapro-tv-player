@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>RAYAPRO TV</title>
+
+    <!-- Meta Tags for SEO (Google Search) -->
+    <meta name="description" content="RAYAPRO TV - مشاهدة القنوات والمباريات بث مباشر بجودة عالية وبشكل آمن. أفضل تجربة مشاهدة تلفزيونية على الإطلاق.">
+    <meta name="keywords" content="RAYAPRO TV, بث مباشر, قنوات تلفزيونية, مباريات اليوم, بي إن سبورت, مشاهدة آمنة, تطبيق تلفزيون, رياضة, أخبار">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.yourwebsite.com/channels-rayan.html"> <!-- استبدل بالرابط الفعلي لصفحتك -->
+    <meta name="theme-color" content="#5d0f0f"> <!-- لون شريط العنوان في متصفحات الجوال -->
+
+    <!-- Meta Tags for Publishing & Social Media (Open Graph & Twitter Cards) -->
+    <!-- Open Graph (Facebook, WhatsApp, Telegram, etc.) -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="RAYAPRO TV - مشاهدة القنوات والمباريات بث مباشر">
+    <meta property="og:description" content="شاهد قنواتك المفضلة ومباريات اليوم بجودة عالية وبأمان تام مع RAYAPRO TV.">
+    <meta property="og:image" content="https://www.yourwebsite.com/image/app-logo.png"> <!-- استبدل برابط شعار التطبيق -->
+    <meta property="og:url" content="https://www.yourwebsite.com/channels-rayan.html"> <!-- استبدل بالرابط الفعلي لصفحتك -->
+    <meta property="og:site_name" content="RAYAPRO TV">
+    <meta property="og:locale" content="ar_AR">
+
+    <!-- Twitter Card (X) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="RAYAPRO TV - مشاهدة القنوات والمباريات بث مباشر">
+    <meta name="twitter:description" content="شاهد قنواتك المفضلة ومباريات اليوم بجودة عالية وبأمان تام مع RAYAPRO TV.">
+    <meta name="twitter:image" content="https://www.yourwebsite.com/image/app-logo.png"> <!-- استبدل برابط شعار التطبيق -->
+    <meta name="twitter:site" content="@yourtwitterhandle"> <!-- استبدل بمعرف تويتر الخاص بك -->
+    <meta name="twitter:creator" content="@yourtwitterhandle"> <!-- استبدل بمعرف تويتر الخاص بك -->
+
+    <!-- Security Meta Tags (some are better as HTTP Headers, but included for completeness/compatibility) -->
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <!-- Content Security Policy: تم إضافة هذا مسبقًا، سأتأكد من تصحيحه وإكمال المصادر -->
+  
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <style>
+        :root {
+            --primary-dark: #5d0f0f;   
+            --bg-paper: #f1e2c1;      
+            --item-bg: #fffcf5;       
+            --text-dark: #3e2723;     
+            --accent-gold: #c5a059;   
+            --header-height: 65px;
+            --sidebar-width: 280px;
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-user-select: none;  /* Safari */
+            -moz-user-select: none;     /* Firefox */
+            -ms-user-select: none;      /* IE 10+ */
+            user-select: none;          /* Standard */
+            -webkit-user-drag: none;    /* Safari - disable image dragging */
+            -moz-user-drag: none;       /* Firefox - disable image dragging */
+            margin: 0; padding: 0;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+        }
+
+        body {
+            /* ...existing code... */
+            /* Disable right-click for the entire body */
+            -webkit-touch-callout: none; /* iOS Safari */
+        }
+
+        /* --- Header --- */
+        header {
+            background-color: var(--primary-dark);
+            background-image: url('https://www.transparenttextures.com/patterns/arabesque.png');
+            height: var(--header-height);
+            display: flex;
+            align-items: center;
+            padding: 0 15px;
+            position: fixed;
+            top: 0; width: 100%; z-index: 5000;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+            border-bottom: 3px solid var(--accent-gold);
+        }
+
+        .header-title {
+            color: #fff;
+            font-size: 1.3rem;
+            font-weight: bold;
+            flex-grow: 1;
+            text-align: center;
+        }
+
+        .icon-btn {
+            color: #fff; font-size: 22px; background: none; border: none;
+            cursor: pointer; width: 50px; height: 50px;
+            display: flex; align-items: center; justify-content: center;
+        }
+
+        /* --- Sidebar Navigation --- */
+        .sidebar {
+            position: fixed;
+            top: 0; right: calc(-1 * var(--sidebar-width)); 
+            width: var(--sidebar-width);
+            height: 100%;
+            background: var(--primary-dark);
+            background-image: url('https://www.transparenttextures.com/patterns/arabesque.png');
+            z-index: 6000;
+            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: -5px 0 20px rgba(0,0,0,0.5);
+            padding-top: 20px;
+            color: white;
+            border-left: 2px solid var(--accent-gold);
+        }
+
+        .sidebar.active { right: 0; }
+
+        .sidebar-header {
+            text-align: center;
+            padding: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .sidebar-header h3 { color: var(--accent-gold); letter-spacing: 1px; }
+
+        .sidebar-menu { list-style: none; padding: 10px; }
+
+        .sidebar-menu li {
+            padding: 10px;
+            margin-bottom: 8px;
+            text-decoration: none;
+            border-radius: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            background: rgba(255,255,255,0.05);
+            transition: 0.3s;
+            font-weight: bold;
+            border: 1px solid transparent;
+        }
+
+        .sidebar-menu li i { margin-right: 15px; width: 20px; color: var(--accent-gold); }
+
+        .sidebar-menu li:hover {
+            background: rgba(197, 160, 89, 0.2);
+            border-color: var(--accent-gold);
+            transform: translateX(-5px);
+        }
+.sidebar-menu a {
+            padding: 10px;
+            margin-left: 0px;
+            margin-bottom: 8px;
+            text-decoration: none;
+            border-radius: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            color: #FFFFFF;
+            background: rgba(255,255,255,0.05);
+            transition: 0.3s;
+            font-weight: bold;
+            border: 1px solid transparent;
+        }
+
+        .sidebar-menu a i { margin-right: 15px; width: 20px; color: var(--accent-gold); }
+
+        .sidebar-menu a:hover {
+            background: rgba(197, 160, 89, 0.2);
+            border-color: var(--accent-gold);
+            transform: translateX(-5px);
+        }
+
+        .overlay {
+            position: fixed; inset: 0;
+            background: rgba(0,0,0,0.7);
+            z-index: 5500;
+            display: none;
+        }
+
+        /* --- Content Layout & Animations --- */
+        .page {
+            position: fixed; inset: 0;
+            padding-top: calc(var(--header-height) + 10px);
+            display: none;
+            overflow-y: auto;
+            z-index: 1000;
+        }
+
+        .page.active { 
+            display: block; 
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .container { max-width: 100%; margin: 0 auto; padding: 15px; }
+
+        .list-container { display: flex; flex-direction: column; gap: 10px; }
+
+        .list-item {
+            background: var(--item-bg);
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            border: 2px solid var(--accent-gold);
+            border-radius: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .cat-text {
+            font-size: 1.2rem; font-weight: bold; color: var(--primary-dark);
+            flex-grow: 1; text-align: left; padding-left: 10px;
+        }
+
+        .cat-logo-frame {
+            width: 50px; height: 50px; background: white;
+            border-radius: 15px; margin-left: 10px;
+            display: flex; align-items: center; justify-content: center;
+            border: 1px solid #eee;
+        }
+
+        .cat-logo-img { max-width: 80%; max-height: 80%; object-fit: contain; }
+
+        /* Grid for Channels */
+        .grid-channels {
+            display: grid; gap: 15px;
+            grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+        }
+
+        .channel-card {
+            background: white; border-radius: 12px; padding: 10px;
+            height: 140px;
+            text-align: center; border-bottom: 4px solid var(--accent-gold);
+        }
+        .channel-card p{
+            font-size: 10px;
+            font-weight: 900;
+            margin-top: 10px;
+            padding: 8px 0;
+        }
+        .channel-card img { width: 90%; height: 70px; object-fit: contain;}
+
+    </style>
+</head>
+<body>
+
+    <div class="overlay" id="mainOverlay" onclick="toggleSidebar()"></div>
+
+    <nav class="sidebar" id="appSidebar">
+        <div class="sidebar-header">
+            <h3>RAYAPRO TV</h3>
+            <p style="font-size: 11px; opacity: 0.7;">Quick Access Links</p>
+        </div>
+        <ul class="sidebar-menu">
+ <a href="matches.html">
+     <i class="fas fa-futbol"></i> مباريات اليوم
+ </a>
+            <li onclick="openUrl('https://t.me/your_telegram')"><i class="fab fa-telegram"></i> Telegram Channel</li>
+            <li onclick="openUrl('https://wa.me/your_number')"><i class="fab fa-whatsapp"></i> WhatsApp Support</li>
+            <li onclick="openUrl('https://www.facebook.com/yourpage')"><i class="fab fa-facebook"></i> Facebook Page</li>
+            <li onclick="openUrl('https://www.instagram.com/yourprofile')"><i class="fab fa-instagram"></i> Instagram</li>
+            <li onclick="openUrl('https://www.youtube.com/yourchannel')"><i class="fab fa-youtube"></i> YouTube Channel</li>
+            <li onclick="openUrl('https://twitter.com/yourprofile')"><i class="fab fa-x-twitter"></i> Follow us on X</li>
+            <hr style="opacity: 0.1; margin: 10px 0;">
+            <li onclick="shareApp()"><i class="fas fa-share-nodes"></i> Share App</li>
+            <li onclick="showAbout()"><i class="fas fa-circle-info"></i> About App</li>
+            <li onclick="location.reload()"><i class="fas fa-sync-alt"></i> Update Content</li>
+        </ul>
+    </nav>
+
+    <header>
+        <button id="navActionBtn" class="icon-btn" onclick="handleBackAction()">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+        <div class="header-title" id="topHeaderTitle">RAYAPRO TV</div>
+        <button class="icon-btn"><i class="fas fa-search"></i></button>
+    </header>
+
+    <div dir="rtl" id="view-home" class="page active">
+        <div class="container">
+            <div class="list-container" id="categoryContainer"></div>
+        </div>
+    </div>
+
+    <div id="view-channels" class="page">
+        <div class="container">
+            <div class="grid-channels" id="channelGrid"></div>
+        </div>
+    </div>
+<script>
+    // حماية من النسخ وسحب الصور
+    document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
+    document.addEventListener('selectstart', function(e) { e.preventDefault(); });
+    document.addEventListener('dragstart', function(e) { e.preventDefault(); });
+
+    const appConfig = {
+        categories: [
+            { id: 1, name: "BEIN SPORTS 4K", logo: "https://upload.wikimedia.org/wikipedia/commons/c/cc/BeIN_SPORTS_MENA_logo_2017.jpg" },
+            { id: 2, name: "BEIN SPORTS HD", logo: "https://upload.wikimedia.org/wikipedia/commons/c/cc/BeIN_SPORTS_MENA_logo_2017.jpg" },
+            { id: 3, name: "BEIN SPORTS SD", logo: "https://upload.wikimedia.org/wikipedia/commons/c/cc/BeIN_SPORTS_MENA_logo_2017.jpg" },
+            { id: 4, name: "ARABIC SPORTS ", logo: "image/Arabicsports.png" },
+            { id: 5, name: "SHAHID VIP", logo: "logo/shahidvip.png" },
+            { id: 6, name: "ISLAMIC CHANNELS", logo: "https://png.pngtree.com/png-vector/20241019/ourmid/pngtree-mosque-icon-vector-clipart-islamic-logo-png-image_14123330.png" },
+            { id: 7, name: "NEWS CHANNELS", logo: "image/news.png" },
+            { id: 8, name: "SPAIN CHANNELS", logo: "image/spain.png" },
+            { id: 9, name: "FRANCE CHANNELS", logo: "image/france.png" },
+            { id: 10, name: "MOROCCO TV", logo: "image/maroc.png" },
+            { id: 11, name: "EGYPT TV", logo: "image/egypt.png" },
+            { id: 12, name: "SAUDI ARABIA TV", logo: "image/soudi.jpg" },
+            { id: 13, name: "ALGÉRIE CHANNELS", logo: "image/algerie.png" },
+            { id: 14, name: "ARABIC CHANNELS", logo: "image/arabic.jpg" },
+              { id: 15, name: "THAMANYA CHANNELS", logo: "image/Thmanyah.svg" }
+        ]
+    };
+
+    let currentScreen = 'home';
+    let lastCategoryName = '';
+    let currentChannelsData = []; 
+
+    // --- وظائف التنقل ---
+    function switchPage(id, title, isBackAction = false) {
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+        if (!isBackAction) {
+            history.pushState({ screenId: id, screenName: title }, title);
+        }
+    }
+
+    function handleBackAction() {
+        if (currentScreen === 'home') {
+            toggleSidebar();
+        } else {
+            window.history.back();
+        }
+    }
+
+    window.onpopstate = function(event) {
+        if (event.state) {
+            const state = event.state;
+            if (state.screenId === 'view-home') {
+                currentScreen = 'home';
+                updateHeaderUI('RAYAPRO TV', false);
+            } else if (state.screenId === 'view-channels') {
+                currentScreen = 'channels';
+                updateHeaderUI(lastCategoryName, true);
+            }
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById(state.screenId).classList.add('active');
+        }
+    };
+
+    function toggleSidebar() {
+        const sidebar = document.getElementById('appSidebar');
+        const overlay = document.getElementById('mainOverlay');
+        if (sidebar.classList.contains('active')) {
+            sidebar.classList.remove('active');
+            overlay.style.display = 'none';
+        } else {
+            sidebar.classList.add('active');
+            overlay.style.display = 'block';
+        }
+    }
+
+    function renderHome() {
+        const container = document.getElementById('categoryContainer');
+        if(!container) return;
+        container.innerHTML = '';
+        appConfig.categories.forEach((cat) => {
+            const div = document.createElement('div');
+            div.className = 'list-item';
+            div.innerHTML = `
+                <div class="cat-text">${cat.name}</div>
+                <div class="cat-logo-frame"><img src="${cat.logo}" class="cat-logo-img"></div>
+            `;
+            div.onclick = () => openChannelList(cat.id, cat.name);
+            container.appendChild(div);
+        });
+    }
+
+    async function openChannelList(id, name) {
+        currentScreen = 'channels';
+        lastCategoryName = name;
+        updateHeaderUI(name, true);
+        switchPage('view-channels', name);
+
+        const grid = document.getElementById('channelGrid');
+        grid.innerHTML = '<p style="grid-column: 1/-1; text-align:center; color: white; padding:20px;">Loading Channels...</p>';
+
+        try {
+            const response = await fetch(`data/${id}.json`);
+            if (!response.ok) throw new Error('File not found');
+            const channels = await response.json();
+            currentChannelsData = channels; 
+            grid.innerHTML = ''; 
+            channels.forEach((channel) => {
+                const card = document.createElement('div');
+                card.className = 'channel-card';
+                card.innerHTML = `
+                    <img src="${channel.logo}" onerror="this.src='https://via.placeholder.com/100?text=TV'">
+                    <p>${channel.name}</p>
+                `;
+                card.onclick = () => openPlayerPage(channel.num);
+                grid.appendChild(card);
+            });
+        } catch (error) {
+            grid.innerHTML = `<p style="grid-column:1/-1; text-align:center; color:red; padding:20px;">Error loading channels</p>`;
+        }
+    }
+
+    // --- الوظيفة النهائية لفتح المشغل المثبت يدوياً ---
+    function openPlayerPage(channelNum) {
+        const channel = currentChannelsData.find(c => c.num == channelNum);
+
+        if (channel && channel.link) {
+            const streamUrl = channel.link;
+            const packageName = "com.rayapro.player";
+            const channelName = channel.name;
+
+            // تم تعديل الرابط هنا ليكون رابطاً مباشراً للتطبيق (Android Intent)
+            // واستخدام المحرك الافتراضي لفتح الفيديو مباشرة
+            const intentUrl = `intent:${streamUrl}#Intent;package=${packageName};type=video/*;S.title=${encodeURIComponent(channelName)};S.browser_fallback_url=${encodeURIComponent(streamUrl)};end`;
+
+            try {
+                // محاولة فتح التطبيق
+                window.location.href = intentUrl;
+            } catch (e) {
+                // إذا فشل تماماً، افتح الرابط في المتصفح كحل أخير
+                window.open(streamUrl, '_blank');
+            }
+        } else {
+            alert("رابط القناة غير متوفر");
+        }
+    }
+
+    function updateHeaderUI(title, showBack) {
+        document.getElementById('topHeaderTitle').innerText = title;
+        const btn = document.getElementById('navActionBtn');
+        if(btn) {
+            btn.innerHTML = showBack ? '<i class="fas fa-arrow-left"></i>' : '<i class="fa-solid fa-bars"></i>';
+        }
+    }
+
+    window.onload = () => {
+        history.replaceState({ screenId: 'view-home', screenName: 'RAYAPRO TV' }, 'RAYAPRO TV');
+        renderHome();
+    };
+</script>
+
+
+</body>
+</html>

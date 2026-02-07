@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Full Screen Player</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .main {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #000;
+        }
+
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* يضمن عدم تمطط الصورة مع ملئ الشاشة */
+        }
+
+        /* زر اختياري لتحفيز الدوران في بعض المتصفحات التي تمنع الدوران التلقائي */
+        #rotateBtn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 50%;
+            z-index: 9999;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main">
+        <video id="player" controls autoplay playsinline>
+            <source src="https://shd-gcp-live.edgenextcdn.net/live/bitmovin-mbc-5/ee6b000cee0629411b666ab26cb13e9b/manifest/video/720p1750kbps/video.m3u8" type="application/x-mpegURL">
+            متصفحك لا يدعم تشغيل هذا الفيديو.
+        </video>
+    </div>
+
+    <script>
+        const video = document.getElementById('player');
+
+        // وظيفة لطلب ملئ الشاشة والدوران
+        async function enableFullScreenLandscape() {
+            try {
+                // 1. طلب ملئ الشاشة
+                if (video.requestFullscreen) {
+                    await video.requestFullscreen();
+                } else if (video.webkitRequestFullscreen) {
+                    await video.webkitRequestFullscreen();
+                }
+
+                // 2. محاولة قفل التوجيه على الوضع الأفقي (Landscape)
+                if (screen.orientation && screen.orientation.lock) {
+                    await screen.orientation.lock('landscape').catch(err => {
+                        console.log("Orientation lock ignored: " + err);
+                    });
+                }
+            } catch (error) {
+                console.error("Fullscreen error:", error);
+            }
+        }
+
+        // تشغيل الوظيفة عند بدء اللعب
+        video.addEventListener('play', () => {
+            enableFullScreenLandscape();
+        });
+
+        // تنبيه: رابط m3u8 يحتاج مشغل متخصص مثل HLS.js ليعمل على جميع المتصفحات
+        // الكود أعلاه سيعمل مباشرة على Safari (iPhone) وبعض متصفحات Android الحديثة.
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <script>
+        if (Hls.isSupported()) {
+            var hls = new Hls();
+            hls.loadSource('https://shd-gcp-live.edgenextcdn.net/live/bitmovin-mbc-5/ee6b000cee0629411b666ab26cb13e9b/manifest/video/720p1750kbps/video.m3u8');
+            hls.attachMedia(video);
+        }
+    </script>
+</body>
+</html>

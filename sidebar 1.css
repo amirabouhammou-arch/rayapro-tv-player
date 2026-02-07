@@ -1,0 +1,111 @@
+      .sidebar {
+            width: 250px;
+            background-color: #0066a7;
+            color: #fff;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            right: -250px;
+            transition: 0.3s;
+            z-index: 2000;
+            box-shadow: -3px 0 5px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar.open {
+            right: 0;
+        }
+
+        .sidebar .logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 150px;
+            padding: 0;
+            margin: 0;
+            background-color: #007d9296;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 50px;
+            flex: 1;
+            overflow-y: auto;
+        }
+
+        .sidebar ul li {
+            position: relative;
+            top: 0;
+            border-bottom: 1px solid #8bf4ff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .sidebar ul li a {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin: 0px;
+            padding: 0px;
+            width: 100%;
+            text-decoration: none;
+            color: #fff;
+        }
+.sidebar ul li a i{
+  margin:5px;
+  padding:5px;
+}
+        .sidebar ul li a:hover {
+            background: #ccc;
+            color: #007d92;
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        .overlay.active {
+            display: block;
+        }
+                .sidebar footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+    position: absolute; /* يثبت العنصر في مكانه */
+    bottom: 0; /* يجعله في أسفل الصفحة */
+    left: 0;
+    width: 100%;
+    height: 30px;
+    /* يمتد على عرض الصفحة بالكامل */
+    text-align: center; /* يضع النصوص في المنتصف */
+    padding: 12px; /* مساحة داخلية للفوتر */
+    font-size: 12px;
+    background-color: rgba(0, 0, 0, 0.8); /* لون خلفية شفاف */
+    color: #ffffffcc; /* لون النص */
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2); /* ظل خفيف للفوتر */
+    z-index: 1000; /* للتأكد من ظهوره فوق العناصر الأخرى */
+}
+
+.sidebar footer span {
+    color: #0094f3; /* لون مميز للنص داخل الفوتر */
+}
+.menu{
+      margin-top: 5px;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      background: #5A5A5A00;
+    }
