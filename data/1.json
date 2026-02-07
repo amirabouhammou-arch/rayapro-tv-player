@@ -2,7 +2,7 @@
     { "name": "beIN SPORTS 1", "num": "1", "logo": "bein/bein1.png", "link": "http://app.upsdo.me:8080/live/PCCQTZPXVCEG/041212071179/93914.ts" },
                 { "name": "beIN SPORTS 2", "num": "2", "logo": "bein/bein2.png", "link": "http://app.upsdo.me:8080/live/PCCQTZPXVCEG/041212071179/94959.ts" },
                 { "name": "beIN SPORTS 3", "num": "3", "logo": "bein/bein3.png", "link": "https://example.com/bein3" },
-                { "name": "beIN SPORTS 4", "num": "4", "logo": "bein/bein4.png", "link": "https://example.com/bein4" },
+                { "name": "beIN SPORTS 4", "num": "4", "logo": "bein/bein4.png", "link": "https://cdn.pixabay.com/video/2026/01/19/328740_large.mp4" },
                 { "name": "beIN SPORTS 5", "num": "5", "logo": "bein/bein5.png", "link": "https://example.com/bein5" },
                 { "name": "beIN SPORTS 6", "num": "6", "logo": "bein/bein6.png", "link": "https://example.com/bein6" },
                 { "name": "beIN SPORTS 7", "num": "7", "logo": "bein/bein7.png", "link": "https://example.com/bein7" },
